@@ -105,14 +105,30 @@
     .garden-controls { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 0; z-index: 2; flex: 0 0 auto; }
     .tiny-note { font-size: clamp(.68rem, 1.4vw, .82rem); color: #9a7b91; margin-top: 0; text-align: center; flex: 0 0 auto; }
 
-    /* Thiệp */
-    .card-scene { perspective: 1200px; width: min(650px, 100%); }
-    .greeting-card {
-      position: relative; padding: clamp(26px, 6vw, 52px); border-radius: 12px;
-      background: linear-gradient(145deg, #fffdf6, #fff0f6);
-      border: 2px solid #f3c5d9; outline: 1px solid #f3c5d9; outline-offset: 6px;
-      box-shadow: 0 22px 55px rgba(151,69,119,.2); overflow: hidden;
+    /* Thiệp: giới hạn theo kích thước màn hình để không phóng quá lớn */
+    #cardScreen {
+      padding: clamp(8px, 1.8vh, 16px) 12px;
+      gap: clamp(8px, 1.5vh, 14px);
     }
+    .card-scene {
+      perspective: 1200px; width: min(600px, 100%); max-height: 100%;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+    }
+    .greeting-card {
+      position: relative; width: 100%; max-height: calc(100dvh - 92px);
+      padding: clamp(14px, 2.8vh, 30px) clamp(18px, 4vw, 38px); border-radius: 12px;
+      background: linear-gradient(145deg, #fffdf6, #fff0f6);
+      border: 2px solid #f3c5d9; outline: 1px solid #f3c5d9; outline-offset: 3px;
+      box-shadow: 0 14px 34px rgba(151,69,119,.18); overflow: hidden;
+    }
+    .card-title { font-size: clamp(1.8rem, 5.2vw, 3.25rem); line-height: 1.08; margin: .15em 0; }
+    .card-decoration { margin: .35rem 0 !important; font-size: clamp(1rem, 2.5vh, 1.35rem) !important; }
+    .card-scene > .d-flex { margin-top: clamp(8px, 1.5vh, 16px) !important; gap: 8px !important; }
+    .card-scene > .d-flex .btn { padding: 9px 16px; font-size: clamp(.78rem, 1.8vw, .95rem); }
+    #cardScreen .card-heart { font-size: clamp(1.5rem, 3.2vh, 2rem); margin-top: .15rem !important; margin-bottom: .15rem !important; }
+    #cardScreen .card-message { font-size: clamp(.78rem, 1.8vh, .94rem); line-height: 1.6; }
+    #cardScreen .signature { font-size: clamp(1.35rem, 3.2vh, 1.8rem); margin-top: clamp(8px, 1.5vh, 16px); }
+    #cardScreen .card-flowers { font-size: clamp(.85rem, 2vh, 1rem); margin-top: .35rem !important; }
     .greeting-card::before, .greeting-card::after { content: "✿"; position: absolute; color: #f4b7d0; font-size: 5rem; opacity: .35; }
     .greeting-card::before { top: -20px; left: -4px; transform: rotate(-25deg); }
     .greeting-card::after { bottom: -30px; right: -5px; transform: rotate(25deg); }
@@ -132,9 +148,11 @@
       .soft-card { border-radius: 24px; padding: 24px 19px; }
       .welcome-copy { line-height: 1.65; margin-bottom: 20px; font-size: .92rem; }
       .eyebrow { font-size: .64rem; letter-spacing: .12em; }
-      .greeting-card { padding: 24px 19px; }
-      .card-message { line-height: 1.65; font-size: .9rem; }
-      .signature { font-size: 1.65rem; }
+      #cardScreen { padding: 8px 12px; }
+      .greeting-card { padding: 14px 16px; max-height: calc(100dvh - 88px); }
+      #cardScreen .card-message { line-height: 1.45; font-size: clamp(.74rem, 2.05vh, .86rem); }
+      #cardScreen .signature { font-size: clamp(1.25rem, 3.2vh, 1.55rem); margin-top: 8px; }
+      #cardScreen .card-scene > .d-flex .btn { padding: 8px 10px; font-size: .76rem; }
     }
     @media (max-height: 700px) {
       .garden-heading h2 { font-size: clamp(1.35rem, 4vh, 2.2rem); }
@@ -143,6 +161,9 @@
       .tiny-note { display: none; }
       .soft-card { padding-top: 22px; padding-bottom: 22px; }
       .welcome-title { margin: 10px 0; }
+      #cardScreen .greeting-card { padding-top: 10px; padding-bottom: 10px; }
+      #cardScreen .card-message { line-height: 1.35; }
+      #cardScreen .card-scene > .d-flex { margin-top: 8px !important; }
     }
     @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; } }
   </style>
@@ -190,12 +211,12 @@
       <article class="greeting-card text-center">
         <div class="eyebrow">A little note for you</div>
         <div class="card-heart my-2">💖</div>
-        <h2 class="script" style="font-size:clamp(2.7rem,7vw,4.3rem);color:#c52f79">Chúc mừng 20/10!</h2>
-        <div class="my-3" style="color:#e5a24b;font-size:1.5rem;letter-spacing:.35em">✿ ✿ ✿</div>
+        <h2 class="script card-title" style="color:#c52f79">Chúc mừng 20/10!</h2>
+        <div class="my-3 card-decoration" style="color:#e5a24b;letter-spacing:.35em">✿ ✿ ✿</div>
         <p class="card-message">Chúc bạn có một ngày 20/10 thật vui vẻ và ngập tràn yêu thương. Mong bạn luôn mạnh mẽ khi cần, dịu dàng khi muốn, gặp nhiều may mắn trên hành trình của mình và luôn giữ nụ cười thật tươi trên môi.</p>
         <p class="card-message mt-3">Chúc những ước mơ của bạn từng bước thành hiện thực, những điều tốt đẹp luôn tìm đến và mỗi ngày đều là một ngày đáng nhớ. 🌷</p>
         <div class="signature script">Luôn vui vẻ và hạnh phúc nhé!</div>
-        <div class="mt-2">🌸 🌼 🌷 💐 🌹</div>
+        <div class="mt-2 card-flowers">🌸 🌼 🌷 💐 🌹</div>
       </article>
       <div class="d-flex flex-wrap gap-2 justify-content-center mt-4">
         <button class="btn btn-rose" id="backGardenBtn">🌷 Về vườn hoa</button>
