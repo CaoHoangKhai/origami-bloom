@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chúc mừng ngày 20/10 💐</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Dancing+Script:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pink: #ff6fae;
+      --deep-pink: #d63384;
+      --cream: #fff8f5;
+      --purple: #8d6bce;
+      --ink: #54394f;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      width: 100%; height: 100%; margin: 0; overflow: hidden;
+      overscroll-behavior: none;
+    }
+    body {
+      min-height: 100vh; min-height: 100dvh;
+      font-family: "Be Vietnam Pro", sans-serif; color: var(--ink);
+      background: radial-gradient(circle at 15% 15%, #ffe4ef 0, transparent 35%),
+                  radial-gradient(circle at 85% 80%, #e9e1ff 0, transparent 36%),
+                  linear-gradient(135deg, #fff9f3, #fff0f7 55%, #f6f0ff);
+    }
+    button { -webkit-tap-highlight-color: transparent; }
+    .screen {
+      height: 100vh; height: 100dvh; width: 100%; display: none; position: relative;
+      align-items: center; justify-content: center; padding: clamp(12px, 3vh, 28px) 16px;
+      overflow: hidden; animation: screenIn .8s ease both;
+    }
+    .screen.active { display: flex; }
+    @keyframes screenIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    .soft-card {
+      width: min(760px, 100%); padding: clamp(28px, 6vw, 58px);
+      text-align: center; border: 1px solid rgba(255,255,255,.85);
+      border-radius: 30px; background: rgba(255,255,255,.72);
+      box-shadow: 0 24px 70px rgba(180, 93, 145, .15);
+      backdrop-filter: blur(14px); position: relative; z-index: 2;
+    }
+    .eyebrow { text-transform: uppercase; letter-spacing: .2em; font-size: .76rem; font-weight: 800; color: var(--deep-pink); }
+    .script { font-family: "Dancing Script", cursive; }
+    h1 { color: #c52f79; font-weight: 800; line-height: 1.15; }
+    .welcome-title { font-size: clamp(2.6rem, 8vw, 5.2rem); margin: 16px 0; }
+    .welcome-copy { max-width: 540px; margin: 0 auto 28px; color: #7b5b72; line-height: 1.9; }
+    .btn-rose {
+      border: 0; color: white; font-weight: 700; border-radius: 999px;
+      padding: 13px 25px; background: linear-gradient(135deg, #ff77b7, #d63384);
+      box-shadow: 0 10px 24px rgba(214, 51, 132, .25); transition: .25s;
+    }
+    .btn-rose:hover { color: white; transform: translateY(-3px); box-shadow: 0 14px 28px rgba(214,51,132,.32); }
+    .btn-outline-rose { border: 1.5px solid #e77bad; color: #c52f79; border-radius: 999px; padding: 11px 22px; font-weight: 700; background: #fff9fc; }
+    .btn-outline-rose:hover { color: #fff; background: #d63384; border-color: #d63384; }
+    .floating { position: absolute; font-size: 1.4rem; opacity: .65; animation: float 5s ease-in-out infinite; pointer-events: none; }
+    .floating:nth-child(2n) { animation-delay: -2s; }
+    @keyframes float { 0%,100% { transform: translateY(0) rotate(-8deg); } 50% { transform: translateY(-18px) rotate(10deg); } }
+
+    /* Vườn hoa */
+    #gardenScreen {
+      display: none; flex-direction: column; gap: clamp(5px, 1.2vh, 12px);
+      padding: clamp(10px, 2vh, 20px) clamp(8px, 2vw, 20px);
+    }
+    #gardenScreen.active { display: flex; }
+    .garden-heading { text-align: center; z-index: 2; position: relative; flex: 0 0 auto; }
+    .garden-heading h2 { color: #b82d79; font-weight: 800; font-size: clamp(1.5rem, 4.5vw, 2.8rem); margin-bottom: .2rem; }
+    .garden-heading p { color: #8b6681; margin-bottom: 0; font-size: clamp(.75rem, 1.7vw, 1rem); }
+    .garden {
+      position: relative; width: min(1000px, 100%); height: auto; flex: 1 1 auto;
+      min-height: 0; max-height: 66vh; margin: 0 auto; display: block;
+      isolation: isolate; overflow: hidden;
+    }
+    .garden::after {
+      content: ""; position: absolute; width: 95%; height: 70px; bottom: -7px; left: 2.5%;
+      background: linear-gradient(180deg, rgba(149,205,132,.04), rgba(113,174,109,.22));
+      border-radius: 50%; filter: blur(9px); z-index: -1;
+    }
+    .flower {
+      --flower-scale: 1; --stem-height: 72px; position: absolute; bottom: 8px; width: 54px;
+      height: calc(var(--stem-height) + 40px); transform-origin: bottom center;
+      opacity: 0; transform: scale(.12) rotate(-12deg); pointer-events: none;
+    }
+    .flower.bloom { animation: flowerBloom .65s cubic-bezier(.2,.85,.25,1.2) forwards; }
+    @keyframes flowerBloom { 0% { opacity: 0; transform: scale(calc(var(--flower-scale) * .12)) rotate(-12deg); } 70% { opacity: 1; transform: scale(calc(var(--flower-scale) * 1.08)) rotate(3deg); } 100% { opacity: 1; transform: scale(var(--flower-scale)) rotate(0); } }
+    .stem { position: absolute; width: 3px; height: var(--stem-height); left: 26px; bottom: 0; border-radius: 99px; background: linear-gradient(90deg, #287246, #a3d88a 48%, #4b985c); transform: rotate(3deg); transform-origin: bottom; animation: stemSway 5s ease-in-out infinite alternate; }
+    @keyframes stemSway { from { transform: rotate(-2deg); } to { transform: rotate(4deg); } }
+    .leaf { position: absolute; width: 22px; height: 11px; background: linear-gradient(135deg,#d1ec9a 0%,#73bd6f 45%,#2d784a 100%); border: 1px solid rgba(31,107,61,.25); clip-path: polygon(0 0, 100% 0, 73% 55%, 18% 100%); bottom: 30px; left: 8px; transform: rotate(15deg); }
+    .leaf.leaf-right { left: 28px; bottom: 47px; transform: scaleX(-1) rotate(12deg); }
+    .bloom-head { position: absolute; left: 1px; top: -2px; width: 52px; height: 52px; transform-origin: 50% 50%; filter: drop-shadow(0 3px 2px rgba(103,47,82,.12)); }
+    .bloom-head.spin-cw { animation: origamiSpin 24s linear infinite; }
+    .bloom-head.spin-ccw { animation: origamiSpinReverse 29s linear infinite; }
+    @keyframes origamiSpin { from { rotate: 0deg; } to { rotate: 360deg; } }
+    @keyframes origamiSpinReverse { from { rotate: 360deg; } to { rotate: 0deg; } }
+    .petal { position: absolute; left: 19px; top: 0; width: 15px; height: 28px; transform-origin: 7.5px 26px; opacity: .98; clip-path: polygon(50% 100%, 9% 58%, 0 25%, 21% 5%, 50% 0, 79% 5%, 100% 25%, 91% 58%); border: 1px solid rgba(255,255,255,.5); filter: drop-shadow(0 1px 1px rgba(90,30,70,.15)); }
+    .petal::after { content: ""; position: absolute; inset: 0; clip-path: polygon(50% 100%, 9% 58%, 0 25%, 21% 5%, 50% 0, 79% 5%, 100% 25%, 91% 58%); background: linear-gradient(100deg, rgba(255,255,255,.48) 0%, transparent 36%, rgba(78,25,70,.15) 52%, transparent 66%), linear-gradient(180deg, rgba(255,255,255,.25), transparent 55%, rgba(75,25,55,.12)); }
+    .petal.drop { clip-path: polygon(50% 100%, 4% 55%, 0 22%, 25% 0, 75% 0, 100% 22%, 96% 55%); }
+    .petal.heart { clip-path: polygon(50% 100%, 8% 57%, 0 28%, 16% 5%, 38% 10%, 50% 27%, 62% 10%, 84% 5%, 100% 28%, 92% 57%); }
+    .flower-center { position: absolute; width: 14px; height: 14px; border-radius: 2px; transform: rotate(45deg); top: 18px; left: 18px; z-index: 2; background: linear-gradient(135deg, #fff7bf 0%, #ffd04c 42%, #d9871d 100%); border: 1px solid rgba(255,255,255,.85); box-shadow: inset -2px -2px 0 rgba(157,85,10,.16), 0 1px 4px #d68a4c66; }
+    .flower-center::after { content: ""; position: absolute; inset: 2px; border-top: 1px solid rgba(255,255,255,.8); border-left: 1px solid rgba(255,255,255,.45); }
+    .sparkle { position: absolute; color: #e8a72e; font-size: 1.4rem; opacity: 0; }
+    .sparkle.show { animation: sparkle 1.2s ease-in-out infinite alternate; }
+    @keyframes sparkle { from { opacity: .3; transform: scale(.7) rotate(0); } to { opacity: 1; transform: scale(1.2) rotate(25deg); } }
+    .garden-controls { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 0; z-index: 2; flex: 0 0 auto; }
+    .tiny-note { font-size: clamp(.68rem, 1.4vw, .82rem); color: #9a7b91; margin-top: 0; text-align: center; flex: 0 0 auto; }
+
+    /* Thiệp */
+    .card-scene { perspective: 1200px; width: min(650px, 100%); }
+    .greeting-card {
+      position: relative; padding: clamp(26px, 6vw, 52px); border-radius: 12px;
+      background: linear-gradient(145deg, #fffdf6, #fff0f6);
+      border: 2px solid #f3c5d9; outline: 1px solid #f3c5d9; outline-offset: 6px;
+      box-shadow: 0 22px 55px rgba(151,69,119,.2); overflow: hidden;
+    }
+    .greeting-card::before, .greeting-card::after { content: "✿"; position: absolute; color: #f4b7d0; font-size: 5rem; opacity: .35; }
+    .greeting-card::before { top: -20px; left: -4px; transform: rotate(-25deg); }
+    .greeting-card::after { bottom: -30px; right: -5px; transform: rotate(25deg); }
+    .card-heart { font-size: 2.2rem; animation: heartbeat 1.5s infinite; display: inline-block; }
+    @keyframes heartbeat { 0%,100% { transform: scale(1); } 12% { transform: scale(1.16); } 24% { transform: scale(1); } }
+    .card-message { line-height: 2; color: #79566e; max-width: 480px; margin: 0 auto; }
+    .signature { color: #c52f79; font-size: 2rem; margin-top: 20px; }
+    .confetti { position: fixed; top: -20px; z-index: 20; pointer-events: none; animation: fall linear forwards; }
+    @keyframes fall { to { transform: translateY(110vh) rotate(700deg); opacity: .1; } }
+    @media (max-width: 575px) {
+      .screen { padding: 12px; }
+      #gardenScreen { padding: 10px 8px max(8px, env(safe-area-inset-bottom)); gap: 7px; }
+      .garden { width: 100%; max-height: none; }
+      .garden-controls { gap: 7px; width: 100%; }
+      .garden-controls .btn { width: auto; flex: 1 1 0; max-width: 230px; padding: 10px 9px; font-size: .82rem; }
+      .tiny-note { max-width: 95%; line-height: 1.35; }
+      .soft-card { border-radius: 24px; padding: 24px 19px; }
+      .welcome-copy { line-height: 1.65; margin-bottom: 20px; font-size: .92rem; }
+      .eyebrow { font-size: .64rem; letter-spacing: .12em; }
+      .greeting-card { padding: 24px 19px; }
+      .card-message { line-height: 1.65; font-size: .9rem; }
+      .signature { font-size: 1.65rem; }
+    }
+    @media (max-height: 700px) {
+      .garden-heading h2 { font-size: clamp(1.35rem, 4vh, 2.2rem); }
+      #gardenScreen { gap: 4px; padding-top: 7px; padding-bottom: 7px; }
+      .garden-controls .btn { padding-top: 8px; padding-bottom: 8px; }
+      .tiny-note { display: none; }
+      .soft-card { padding-top: 22px; padding-bottom: 22px; }
+      .welcome-title { margin: 10px 0; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; } }
+  </style>
+</head>
+<body>
+  <!-- MÀN HÌNH 1: LỜI CHÚC -->
+  <section id="welcomeScreen" class="screen active">
+    <span class="floating" style="top:9%;left:9%">🌷</span>
+    <span class="floating" style="top:18%;right:12%">💗</span>
+    <span class="floating" style="bottom:15%;left:15%">✨</span>
+    <span class="floating" style="bottom:12%;right:10%">🌸</span>
+    <div class="soft-card">
+      <div class="eyebrow">20 tháng 10 · Ngày Phụ nữ Việt Nam</div>
+      <div class="script" style="font-size:2.2rem;color:#e45b9b;margin-top:14px">Gửi những điều dịu dàng nhất</div>
+      <h1 class="welcome-title">Chúc mừng<br><span class="script">ngày 20/10</span></h1>
+      <p class="welcome-copy">Chúc bạn luôn xinh đẹp, vui vẻ và tự tin theo cách riêng của mình. Mong mỗi ngày đều có những điều nhỏ bé khiến bạn mỉm cười, được yêu thương và trân trọng thật nhiều. 💐</p>
+      <button class="btn btn-rose btn-lg" id="startBtn">Mở khu vườn yêu thương <span aria-hidden="true">🌼</span></button>
+      <div class="mt-3 small text-secondary">Một món quà nhỏ dành tặng bạn</div>
+    </div>
+  </section>
+
+  <!-- MÀN HÌNH 2: VƯỜN HOA -->
+  <section id="gardenScreen" class="screen">
+    <div class="garden-heading">
+      <div class="eyebrow mb-2">Dành tặng bạn 🌷</div>
+      <h2 class="script">Một vườn hoa rực rỡ</h2>
+      <p>Những bông hoa nhỏ thay lời chúc ngọt ngào.</p>
+    </div>
+    <div class="garden" id="garden" aria-label="Vườn hoa nhiều màu sắc">
+      <span class="sparkle" style="left:13%;top:28%">✦</span>
+      <span class="sparkle" style="left:29%;top:12%">✧</span>
+      <span class="sparkle" style="right:25%;top:20%">✦</span>
+      <span class="sparkle" style="right:10%;top:38%">✧</span>
+    </div>
+    <div class="garden-controls">
+      <button class="btn btn-rose" id="showCardBtn">💌 Hiển thị thiệp</button>
+      <button class="btn btn-outline-rose" id="rebloomBtn">🌸 Cho hoa nở lại</button>
+    </div>
+    <div class="tiny-note">Mỗi bông hoa là một lời chúc: bình an, hạnh phúc và luôn rạng rỡ.</div>
+  </section>
+
+  <!-- MÀN HÌNH 3: THIỆP RIÊNG -->
+  <section id="cardScreen" class="screen">
+    <div class="card-scene">
+      <article class="greeting-card text-center">
+        <div class="eyebrow">A little note for you</div>
+        <div class="card-heart my-2">💖</div>
+        <h2 class="script" style="font-size:clamp(2.7rem,7vw,4.3rem);color:#c52f79">Chúc mừng 20/10!</h2>
+        <div class="my-3" style="color:#e5a24b;font-size:1.5rem;letter-spacing:.35em">✿ ✿ ✿</div>
+        <p class="card-message">Chúc bạn có một ngày 20/10 thật vui vẻ và ngập tràn yêu thương. Mong bạn luôn mạnh mẽ khi cần, dịu dàng khi muốn, gặp nhiều may mắn trên hành trình của mình và luôn giữ nụ cười thật tươi trên môi.</p>
+        <p class="card-message mt-3">Chúc những ước mơ của bạn từng bước thành hiện thực, những điều tốt đẹp luôn tìm đến và mỗi ngày đều là một ngày đáng nhớ. 🌷</p>
+        <div class="signature script">Luôn vui vẻ và hạnh phúc nhé!</div>
+        <div class="mt-2">🌸 🌼 🌷 💐 🌹</div>
+      </article>
+      <div class="d-flex flex-wrap gap-2 justify-content-center mt-4">
+        <button class="btn btn-rose" id="backGardenBtn">🌷 Về vườn hoa</button>
+        <button class="btn btn-outline-rose" id="cardRebloomBtn">✨ Cho hoa nở lại</button>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const screens = {
+      welcome: document.getElementById('welcomeScreen'),
+      garden: document.getElementById('gardenScreen'),
+      card: document.getElementById('cardScreen')
+    };
+
+    function showScreen(name) {
+      Object.values(screens).forEach(screen => screen.classList.remove('active'));
+      screens[name].classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    const flowerColors = [
+      ['#ff5e9c','#ff91bd','#ffd0e2'], ['#a66bdf','#c69af4','#e8d6ff'],
+      ['#ff9f43','#ffc15e','#ffe0a3'], ['#e94f64','#ff7886','#ffc0c6'],
+      ['#55b9d6','#83d8e8','#c6f3f7'], ['#f1c40f','#ffdf69','#fff0a6'],
+      ['#ef79c5','#ffaddd','#ffd8ef'], ['#7fca79','#a5e29c','#d9f5c8'],
+      ['#f06c42','#ff9d70','#ffd1b5']
+    ];
+    const flowerTypes = ['oval', 'drop', 'heart'];
+    const garden = document.getElementById('garden');
+    let flowerElements = [];
+    let bloomTimers = [];
+
+    function buildFlower(index, left, bottom, scale, colorSet, typeIndex) {
+      const flower = document.createElement('div');
+      flower.className = 'flower';
+      flower.style.left = left;
+      flower.style.bottom = bottom + 'px';
+      flower.style.setProperty('--flower-scale', scale);
+      flower.style.zIndex = String(Math.round(scale * 10));
+      flower.style.transform = `scale(${scale})`;
+      const stem = document.createElement('div'); stem.className = 'stem';
+      const leaf1 = document.createElement('div'); leaf1.className = 'leaf';
+      const leaf2 = document.createElement('div'); leaf2.className = 'leaf leaf-right';
+      const head = document.createElement('div'); head.className = 'bloom-head ' + (Math.random() < .5 ? 'spin-cw' : 'spin-ccw');
+      const petalCount = 8;
+      for (let i = 0; i < petalCount; i++) {
+        const petal = document.createElement('div');
+        petal.className = 'petal ' + flowerTypes[(typeIndex + i) % flowerTypes.length];
+        petal.style.background = `linear-gradient(${35 + i * 9}deg, ${colorSet[(i + 1) % colorSet.length]} 0%, ${colorSet[i % colorSet.length]} 48%, ${colorSet[(i + 2) % colorSet.length]} 100%)`;
+        petal.style.zIndex = String(i % 2);
+        petal.style.transform = `rotate(${i * (360 / petalCount)}deg)`;
+        head.appendChild(petal);
+      }
+      const center = document.createElement('div'); center.className = 'flower-center';
+      head.appendChild(center);
+      flower.append(stem, leaf1, leaf2, head);
+      return flower;
+    }
+
+    function clearBloomTimers() {
+      bloomTimers.forEach(clearTimeout); bloomTimers = [];
+    }
+
+    function createGarden() {
+      clearBloomTimers();
+      flowerElements.forEach(f => f.remove());
+      flowerElements = [];
+      const sparkles = garden.querySelectorAll('.sparkle');
+      sparkles.forEach(s => s.classList.remove('show'));
+
+      // 99 bông hoa: bố cục so le, nhiều cụm, nhiều kích thước để vườn hoa tự nhiên.
+      const count = 99;
+      const gardenHeight = garden.clientHeight || 420;
+      const gardenWidth = garden.clientWidth || 900;
+      const positions = [];
+      const rows = 9;
+      const columns = 11;
+      for (let i = 0; i < count; i++) {
+        const row = Math.floor(i / columns);
+        const col = i % columns;
+        const stagger = row % 2 ? 0.48 : 0;
+        const x = Math.max(2.5, Math.min(97.5, ((col + 0.5 + stagger + (Math.random() - .5) * .48) / (columns + .25)) * 100));
+        const depth = row / (rows - 1);
+        // Hàng thấp là tiền cảnh: hoa lớn, thân dài. Hàng cao là hậu cảnh: hoa nhỏ, thân ngắn.
+        const bottom = Math.max(2, depth * Math.min(gardenHeight * .58, 230) + (Math.random() - .5) * Math.min(24, gardenHeight * .055));
+        const clusterBoost = (col % 4 === 0 || col % 5 === 2) ? .07 : 0;
+        const scale = Math.max(.28, Math.min(.92, .78 - depth * .43 + clusterBoost + (Math.random() - .5) * .1));
+        const stemHeight = Math.round(82 - depth * 38 + (Math.random() - .5) * 8);
+        positions.push({ x, bottom, scale, stemHeight, depth, color: Math.floor(Math.random() * flowerColors.length), type: Math.floor(Math.random() * flowerTypes.length), row, order: Math.random() });
+      }
+      // Quelques fleurs plus grandes à l'avant et petites en arrière pour la profondeur.
+      positions.sort((a, b) => a.row - b.row || a.order - b.order);
+      positions.forEach((spec, i) => {
+        const flower = buildFlower(i, `calc(${spec.x}% - 27px)`, spec.bottom, spec.scale, flowerColors[spec.color], spec.type);
+        flower.style.left = `calc(${spec.x}% - 27px)`;
+        flower.style.bottom = `${spec.bottom}px`;
+        flower.style.setProperty('--stem-height', `${spec.stemHeight}px`);
+        // Tiền cảnh vẽ sau và nằm trên hậu cảnh, che khuất thân hoa phía xa một cách tự nhiên.
+        flower.style.zIndex = String(30 - spec.row);
+        flower.style.filter = spec.depth > .65 ? 'saturate(.72) brightness(1.08) blur(.25px)' : (spec.depth < .25 ? 'saturate(1.12) contrast(1.03)' : 'saturate(.96)');
+        garden.appendChild(flower);
+        flowerElements.push(flower);
+      });
+
+      // Nở theo cụm nhỏ để hiệu ứng nhẹ trên điện thoại và máy tính.
+      const batchSize = 11;
+      for (let batch = 0; batch < Math.ceil(flowerElements.length / batchSize); batch++) {
+        const batchIndex = batch;
+        bloomTimers.push(setTimeout(() => {
+          const first = batchIndex * batchSize;
+          const last = Math.min(first + batchSize, flowerElements.length);
+          for (let i = first; i < last; i++) flowerElements[i].classList.add('bloom');
+        }, 100 + batch * 105));
+      }
+      sparkles.forEach((sparkle, i) => bloomTimers.push(setTimeout(() => sparkle.classList.add('show'), 650 + i * 180)));
+      bloomTimers.push(setTimeout(makeConfetti, 900));
+    }
+
+    function makeConfetti() {
+      const symbols = ['🌸','💗','✨','🌼','💕','✿'];
+      for (let i = 0; i < 24; i++) {
+        const bit = document.createElement('span');
+        bit.className = 'confetti';
+        bit.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        bit.style.left = Math.random() * 100 + 'vw';
+        bit.style.fontSize = (14 + Math.random() * 16) + 'px';
+        bit.style.animationDuration = (3 + Math.random() * 3) + 's';
+        bit.style.animationDelay = (Math.random() * .8) + 's';
+        document.body.appendChild(bit);
+        setTimeout(() => bit.remove(), 7000);
+      }
+    }
+
+    document.getElementById('startBtn').addEventListener('click', () => {
+      showScreen('garden');
+      createGarden();
+    });
+    document.getElementById('showCardBtn').addEventListener('click', () => {
+      showScreen('card');
+      makeConfetti();
+    });
+    document.getElementById('rebloomBtn').addEventListener('click', createGarden);
+    document.getElementById('backGardenBtn').addEventListener('click', () => showScreen('garden'));
+    document.getElementById('cardRebloomBtn').addEventListener('click', () => {
+      showScreen('garden');
+      createGarden();
+    });
+
+    // Nếu quay lại vườn hoa từ thiệp, giữ nguyên hoa đã nở.
+    // Mỗi lần bấm "Cho hoa nở lại", vườn được dựng lại và hoa nở theo nhịp mới.
+  </script>
+</body>
+</html>
